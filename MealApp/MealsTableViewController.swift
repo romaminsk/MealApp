@@ -92,6 +92,8 @@ final class MealsTableViewController: UITableViewController {
             destVC.mealImage = meal.image
             destVC.mealName = meal.name
             destVC.mealPrice = meal.price
+            destVC.mealRatingBar = meal.ratingBar
+            destVC.index = indexPath.row
         }
     }
 

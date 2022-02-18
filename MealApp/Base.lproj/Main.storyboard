@@ -216,6 +216,7 @@
                     </view>
                     <connections>
                         <outlet property="ratingBar" destination="q6h-QE-nfp" id="Yr0-fe-Au6"/>
+                        <outlet property="textField" destination="XPV-0B-W4C" id="H4s-Fp-cJg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYm-Jo-T6D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
