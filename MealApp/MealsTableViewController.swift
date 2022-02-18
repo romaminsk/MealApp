@@ -32,12 +32,14 @@ final class MealsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MealTableViewCell
 
         let meal = DataManager.shared.meals[indexPath.row]
-        cell.textLabel?.text = meal.name
-        cell.detailTextLabel?.text = String(meal.price)
-        cell.imageView?.image = meal.image
+        
+        cell.mealImage.image = meal.image
+        cell.mealNameLbl.text = meal.name
+        cell.mealPriceLbl.text = String(meal.price)
+        cell.mealRatingLbl.text = meal.ratingBar
         
         return cell
     }
