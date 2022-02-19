@@ -35,19 +35,19 @@ final class MealsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MealTableViewCell
 
         let meal = DataManager.shared.meals[indexPath.row]
-        
+
         cell.mealImage.image = meal.image
         cell.mealNameLbl.text = meal.name
         cell.mealPriceLbl.text = String(meal.price)
         cell.mealRatingLbl.text = meal.ratingBar
-        
+
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -83,18 +83,14 @@ final class MealsTableViewController: UITableViewController {
     }
     */
 
-    
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow,
-           let destVC = segue.destination as? MealDiscriptionViewController {
-            let meal = DataManager.shared.meals[indexPath.row]
-            destVC.mealImage = meal.image
-            destVC.mealName = meal.name
-            destVC.mealPrice = meal.price
-            destVC.mealRatingBar = meal.ratingBar
+            let destVC = segue.destination as? MealDiscriptionViewController {
+            _ = DataManager.shared.meals[indexPath.row]
             destVC.index = indexPath.row
         }
     }

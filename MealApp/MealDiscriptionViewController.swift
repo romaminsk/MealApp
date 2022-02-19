@@ -17,38 +17,26 @@ final class MealDiscriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        imageView.image = mealImage
-        nameLabel.text = mealName
-        priceLabel.text = String(mealPrice ?? 0.0)
-        ratingLabel.text = mealRatingBar
+        imageView.image = meal.image
+        nameLabel.text = meal.name
+        priceLabel.text = String(meal.price)
+        ratingLabel.text = meal.ratingBar
     }
 
-    var mealImage: UIImage?
-    var mealName: String?
-    var mealPrice: Double?
-    var mealRatingBar: String?
-    var mealFeadback: [Feedback]? = []
-    var index: Int?
+    var meal: Meal {
+        DataManager.shared.meals[index]
+    }
 
+    var index: Int = 0
 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let mealImage = mealImage,
-            let mealName = mealName,
-            let mealPrice = mealPrice,
-            let mealRatingBar = mealRatingBar,
-            let mealFeadback = mealFeadback,
-            let index = index,
-            let destVC = segue.destination as? ReviewViewController else { return }
-
-        destVC.mealImage = mealImage
-        destVC.mealName = mealName
-        destVC.mealPrice = mealPrice
-        destVC.mealRatingBar = mealRatingBar
-        destVC.mealFeadback = mealFeadback
-        destVC.index = index
+        if let dest = segue.destination as? ReviewTableViewController {
+            dest.index = index
+        } else if let dest = segue.destination as? ReviewViewController {
+            dest.index = index
+        }
     }
-
 }

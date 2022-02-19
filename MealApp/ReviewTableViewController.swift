@@ -9,6 +9,12 @@ import UIKit
 
 class ReviewTableViewController: UITableViewController {
 
+    var index: Int!
+
+    var meal: Meal {
+        DataManager.shared.meals[index]
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,25 +27,25 @@ class ReviewTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return DataManager.shared.meals.count
+        meal.feedbacks.count
     }
 
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ReviewTableViewCell
 
-        let meal = DataManager.shared.meals[indexPath.row]
-        
-//        cell.dataLbl.text = meal.
-//        cell.feedbackLbl.text = meal.feedbacks.
-        cell.ratingLbl.text = meal.ratingBar
+        let feedback = meal.feedbacks[indexPath.row]
+
+        cell.dataLbl.text = feedback.dateString
+        cell.feedbackLbl.text = feedback.text
+        cell.ratingLbl.text = feedback.ratingBar
 
         return cell
     }
